@@ -1,4 +1,6 @@
 
+import java.util.Comparator;
+import java.util.Optional;
 import java.util.ArrayList;
 
 public class Suitcase {
@@ -19,23 +21,19 @@ public class Suitcase {
         this.Items.add(Item);
     }
 
+    public ArrayList<Item> getItems() {
+        return Items;
+    }
+
     public int totalWeight() {
-        int summa = 0;
-        int indeksi = 0;
-        while (indeksi < this.Items.size()) {
-        summa += this.Items.get(indeksi).getweight();
-        indeksi++;
-        }
-        return summa;
+        return this.Items.stream()
+                .map(i -> i.getWeight())
+                .reduce(0, (total, weight) -> total + weight);
     }
 
     public void printItems() {
-        int indeksi = 0;
-        while (indeksi < this.Items.size()) {
-        Item t = this.Items.get(indeksi);
-        System.out.println(t);
-        indeksi++;
-        }
+        Items.stream()
+                .forEach(i -> System.out.println(i));
     }
 
     public Item heaviestItem() {
@@ -44,7 +42,9 @@ public class Suitcase {
         }
 
         // Tutustumme järjestämiseen hieman myöhemmin kurssilla
-        return this.Items.stream().max((t1, t2) -> t1.getWeight() - t2.getWeight()).get();
+        return this.Items.stream()
+                .max(Comparator.comparing(Item::getWeight))
+                .get();
     }
 
     @Override
