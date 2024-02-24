@@ -5,9 +5,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class LiteracyComparison {
-
     public static void main(String[] args) {
-
         ArrayList<String> literacyList = new ArrayList<>();
 
         try {
@@ -27,6 +25,5 @@ public class LiteracyComparison {
                 })
                 
                 .forEach(row -> System.out.println(row[3] + " (" + row[4]+ ")," + row[2].replace(" (%)", "") + ", " + row[5]));
-
     }
 }
