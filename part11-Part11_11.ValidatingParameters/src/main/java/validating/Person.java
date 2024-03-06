@@ -7,6 +7,9 @@ public class Person {
 
     public Person(String name, int age) {
 
+        if (name==null || name.isEmpty() || name.length() > 40 || age > 120 || age <0) {
+            throw new IllegalArgumentException("Illegal Argument");
+        }
         this.name = name;
         this.age = age;
     }
